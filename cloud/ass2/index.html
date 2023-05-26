@@ -1,0 +1,97 @@
+<!DOCTYPE html <html>
+<style>
+    body {
+        padding: 25px;
+    }
+
+    #calculator {
+        width: 400px;
+        height: 500px;
+        margin: 100px auto;
+        text-align: center;
+    }
+
+
+    .display {
+        height: 80px;
+        font-size: 45px;
+        margin-bottom: 30px;
+        text-align: right;
+    }
+
+
+    button {
+        width: 80px;
+        height: 80px;
+        font-size: 25px;
+        margin: 5px;
+        background: #3FDEAE;
+    }
+</style>
+
+<head>
+    <title>Hello, World!</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div id="calculator">
+        <div class="display">0</div>
+        <button class="number">1</button>
+        <button class="number">2</button>
+        <button class="number">3</button>
+        <button class="operator">+</button>
+        <button class="number">4</button>
+        <button class="number">5</button>
+        <button class="number">6</button>
+        <button class="operator">-</button>
+        <button class="number">7</button>
+        <button class="number">8</button>
+        <button class="number">9</button>
+        <button class="operator">x</button>
+        <button class="clear">C</button>
+        <button class="number">0</button>
+        <button class="equal">=</button>
+        <button class="operator">/</button>
+    </div>
+    <script src="script.js"></script>
+    <script>const calculator = document.querySelector('#calculator')
+        const display = calculator.querySelector('.display');
+        const buttons = calculator.querySelectorAll('button');
+
+
+        let firstOperand = '';
+        let operator = '';
+        let secondOperand = '';
+
+
+        buttons.forEach(button => {
+            button.addEventListener('click', e => {
+                const value = e.target.innerText;
+
+
+                if (value === 'C') {
+                    firstOperand = '';
+                    operator = '';
+                    secondOperand = '';
+                    display.innerText = 0;
+                } else if (value === '+' || value === '-' || value === 'x' || value === '/') {
+                    operator = value;
+                    display.innerText = operator;
+                } else if (value === '=') {
+                    secondOperand = display.innerText;
+                    display.innerText = eval(firstOperand + operator + secondOperand);
+                } else {
+                    if (!operator) {
+                        firstOperand += value;
+                        display.innerText = firstOperand;
+                    } else {
+                        secondOperand += value;
+                        display.innerText = secondOperand;
+                    }
+                }
+            });
+        });;</script>
+</body>
+
+</html>>
